@@ -1,6 +1,5 @@
-import familUrl from "../../public/img/WEBSITE PICS (1).png";
 import familUrl2 from "../../public/img/Untitled design (3).png";
-import GetBtnDesk from "../components/GetBtnDesk";
+import familUrl from "../../public/img/WEBSITE PICS (1).png";
 
 const PageOne = () => {
   return (
@@ -18,7 +17,9 @@ const PageOne = () => {
           <p className="text-[21px] mb-6">
             95% saw Best Results in 3 weeks when followed consistently*
           </p>
-          <GetBtnDesk />
+          <button className="bg-gray-600 text-white text-lg font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300">
+            Get your Diet plan now
+          </button>
         </div>
         <div className="mt-4">
           <img src={familUrl} alt="Doctor Recommended App" />
@@ -40,7 +41,9 @@ const PageOne = () => {
             95% saw Best Results in 3 weeks
             <br /> when followed consistently*
           </h1>
-          <GetBtnDesk />
+          <button className="bg-gray-600 text-white text-3xl font-bold px-8 py-4 rounded-md shadow-lg justify-center hover:shadow-xl transition duration-300">
+            Get your Diet plan now
+          </button>
         </div>
         <div className="absolute bottom-0 right-0">
           <img
