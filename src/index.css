@@ -1,3 +1,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Glacial Indifference", sans-serif;
+  touch-action: pan-y;
+}
+
+.card-stack {
+  perspective: 1000px;
+}
+.card {
+  transition: all 0.3s ease;
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
+}
+.image-left {
+  margin-left: -70px; /* Adjust this value as needed */
+}
+.slider-container {
+  scroll-snap-type: x mandatory;
+}
+.slider-card {
+  scroll-snap-align: start;
+}
+body {
+  font-family: "Glacial Indifference", sans-serif;
+  touch-action: pan-y;
+}
+
+.card-stack {
+  perspective: 1000px;
+}
+.card {
+  transition: all 0.3s ease;
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
+}
+.image-left {
+  margin-left: -70px; /* Adjust this value as needed */
+}
+.slider-container {
+  scroll-snap-type: x mandatory;
+}
+.slider-card {
+  scroll-snap-align: start;
+}
+
+.bg-selected {
+  background-color: #009846 !important;
+  color: white !important;
+}
+/* New CSS classes for text formatting */
+.option-bold {
+  font-weight: bold;
+}
+
+.option-small {
+  font-size: 18px; /* Adjust size as needed */
+  font-style: italic;
+}

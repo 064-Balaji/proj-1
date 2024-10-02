@@ -1,11 +1,12 @@
-import "./App.css";
-import Provide from "./Provide";
+import NavBar from "./pages/NavBar";
+import PageOne from "./pages/PageOne";
 
 function App() {
   return (
-    <div>
-      <Provide />
-    </div>
+    <>
+      <NavBar />
+      <PageOne />
+    </>
   );
 }
 
