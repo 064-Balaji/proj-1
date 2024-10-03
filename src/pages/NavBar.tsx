@@ -1,17 +1,19 @@
 import imgUrl from "../../public/img/WEBSITE_PICS-images-17-removebg-preview.png";
+import Btn from "./Btn";
 
 const NavBar = () => {
   return (
     <div className="flex justify-between items-center space-x-3 bg-white/60 backdrop-blur-lg sticky top-0 z-50 px-2 py-3 shadow-md md:px-20">
       <img src={imgUrl} alt="Logo" className="h-12 md:h-20 md:pl-10" />
       <div className="flex items-center  ">
-        <button className="md:hidden text-sm bg-gray-600 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition duration-300 text-text  md:text-2xl md:ml-40">
+        <button
+          className="md:hidden text-sm bg-gray-600 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition duration-300 text-text  md:text-2xl md:ml-40"
+          onClick={() => alert("Hello")}
+        >
           Get your Diet plan
         </button>
         <div className="md:flex flex-row gap-4 hidden">
-          <button className="hidden md:block bg-gray-600 text-white text-2xl font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300">
-            Get your Diet plan now
-          </button>
+          <Btn />
           <a href="https://wa.me/message/DJWZOFPRPFSPK1" className="text-white">
             <svg
               className="w-10 h-10"
