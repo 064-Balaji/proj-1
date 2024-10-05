@@ -85,11 +85,10 @@ const Btn = () => {
             {questions[curQuestion].options.length > 0 ? (
               <Flex direction="column" gap="2">
                 {questions[curQuestion].options.map((O, index) => (
-                  <Flex
-                    align="center"
-                    gap="2"
+                  <Text
+                    as="label"
                     key={index}
-                    className="p-2 rounded-md bg-gray-100"
+                    className="flex gap-2 items-center p-2 rounded-md bg-gray-100"
                   >
                     <Radio
                       name={`question-${curQuestion}`}
@@ -98,7 +97,7 @@ const Btn = () => {
                       checked={selectedOption === O}
                     />
                     <Text>{O}</Text>
-                  </Flex>
+                  </Text>
                 ))}
               </Flex>
             ) : (

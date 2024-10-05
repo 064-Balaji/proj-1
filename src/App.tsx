@@ -1,5 +1,7 @@
 import FAQ from "./pages/Faq";
 import FeedbackSlider from "./pages/FeedbackSlider";
+import Footer from "./pages/Footer";
+import FooterTwo from "./pages/FooterTwo";
 import Journey from "./pages/Journey";
 import NavBar from "./pages/NavBar";
 import PageOne from "./pages/PageOne";
@@ -18,6 +20,8 @@ function App() {
       <FAQ />
       <SocialMedia />
       <FeedbackSlider />
+      <Footer />
+      <FooterTwo />
     </>
   );
 }
