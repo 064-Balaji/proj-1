@@ -5,6 +5,7 @@ import feedback3 from "../../public/img/feedback final (3).png";
 import feedback4 from "../../public/img/feedback final (4).png";
 import feedback5 from "../../public/img/feedback final (5).png";
 import feedback6 from "../../public/img/feedback final (6).png";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 const FeedbackSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -18,15 +19,18 @@ const FeedbackSlider = () => {
     feedback6,
   ];
 
+  const totalSlides = Math.ceil(feedbackImages.length / 3);
+
   const handlePrevClick = () => {
-    setCurrentSlide(
-      currentSlide === 0 ? feedbackImages.length - 1 : currentSlide - 1
-    );
+    setCurrentSlide(currentSlide === 0 ? totalSlides - 1 : currentSlide - 1);
   };
 
   const handleNextClick = () => {
-    setCurrentSlide((currentSlide + 1) % feedbackImages.length);
+    setCurrentSlide((currentSlide + 1) % totalSlides);
   };
+
+  // Progress percentage calculation based on currentSlide
+  const progressPercentage = ((currentSlide + 1) / totalSlides) * 100;
 
   return (
     <section>
@@ -39,7 +43,7 @@ const FeedbackSlider = () => {
         <div className="overflow-hidden relative">
           <div
             className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentSlide * 33.33}%)` }}
+            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
           >
             {feedbackImages.map((imgSrc, index) => (
               <div key={index} className="flex-shrink-0 w-1/3">
@@ -54,16 +58,24 @@ const FeedbackSlider = () => {
         </div>
         <button
           onClick={handlePrevClick}
-          className="absolute left-[-10%] top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-3 rounded-full focus:outline-none"
+          className="absolute left-[-10%] top-1/2 transform -translate-y-1/2 bg-opacity-50 p-3 rounded-full focus:outline-none"
         >
-          &#10094;
+          <BiChevronLeft size="32" />
         </button>
         <button
           onClick={handleNextClick}
-          className="absolute right-[-10%] top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-3 rounded-full focus:outline-none"
+          className="absolute right-[-10%] top-1/2 transform -translate-y-1/2 bg-opacity-50 p-3 rounded-full focus:outline-none"
         >
-          &#10095;
+          <BiChevronRight size="32" />
         </button>
+
+        {/* Progress Bar */}
+        <div className="w-3/4 mx-auto bg-gray-200 h-2 rounded-full mt-6">
+          <div
+            className="bg-green-500 h-full rounded-full transition-all duration-300"
+            style={{ width: `${progressPercentage}%` }}
+          />
+        </div>
       </div>
 
       {/* Mobile View */}
@@ -86,16 +98,24 @@ const FeedbackSlider = () => {
         </div>
         <button
           onClick={handlePrevClick}
-          className="absolute left-[-10%] top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-3 rounded-full focus:outline-none"
+          className="absolute left-[-10%] top-1/2 transform -translate-y-1/2 bg-opacity-50 text-white p-3 rounded-full focus:outline-none"
         >
-          &#10094;
+          <BiChevronLeft />
         </button>
         <button
           onClick={handleNextClick}
           className="absolute right-[-10%] top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-3 rounded-full focus:outline-none"
         >
-          &#10095;
+          <BiChevronLeft />
         </button>
+
+        {/* Progress Bar for mobile view */}
+        <div className="w-3/4 mx-auto bg-gray-200 h-2 rounded-full mt-6">
+          <div
+            className="bg-green-500 h-full rounded-full transition-all duration-300"
+            style={{ width: `${progressPercentage}%` }}
+          />
+        </div>
       </div>
     </section>
   );

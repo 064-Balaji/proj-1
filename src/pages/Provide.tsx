@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 // Import images
 import image7 from "../../public/img/WEBSITE PICS (7).png";
@@ -10,7 +11,6 @@ import image12 from "../../public/img/WEBSITE PICS (12).png";
 import image13 from "../../public/img/WEBSITE PICS (13).png";
 import image14 from "../../public/img/WEBSITE PICS (14).png";
 import image15 from "../../public/img/WEBSITE PICS (15).png";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 const cardData = [
   {
@@ -75,6 +75,8 @@ const Provide = () => {
     setCurrentCard((prev) => (prev - 1 + cardData.length) % cardData.length);
   };
 
+  const progressPercentage = ((currentCard + 1) / cardData.length) * 100;
+
   return (
     <>
       <section className="pt-[50px] relative bg-white my-2 md:my-0 md:pt-[40px] p-4 overflow-hidden">
@@ -84,13 +86,18 @@ const Provide = () => {
         <div className="hidden md:inline-block md:absolute md:left-[-5%] md:top-[60px] bg-gray-600 text-white text-3xl font-bold pl-[90px] p-10 rounded-full shadow-lg py-3 pr-5 text-center italic">
           <h1 className="pr-5">What We Provide?</h1>
         </div>
+
         <div className="card-stack relative h-[500px] md:h-[525px]">
           {cardData.map((card, index) => (
             <div
               key={index}
-              className={`card rounded-lg p-4 transform ${
-                index === currentCard ? "opacity-100 z-10" : "opacity-0 -z-10"
-              } transition-all duration-300 ease-in-out absolute top-0 left-0 w-full`}
+              className={`card rounded-lg p-4 absolute w-full h-full transform transition-transform duration-700 ease-in-out ${
+                index === currentCard
+                  ? "translate-x-0 opacity-100 scale-100 z-10"
+                  : index < currentCard
+                  ? "-translate-x-full opacity-0 scale-90"
+                  : "translate-x-full opacity-0 scale-90"
+              }`}
             >
               <img
                 src={card.image}
@@ -106,6 +113,15 @@ const Provide = () => {
             </div>
           ))}
         </div>
+
+        {/* Progress Bar */}
+        <div className="w-3/4 mx-auto bg-gray-200 h-2 rounded-full mt-12">
+          <div
+            className="bg-green-500 h-full rounded-full transition-all duration-300"
+            style={{ width: `${progressPercentage}%` }}
+          />
+        </div>
+
         <div className="flex justify-between">
           <button
             onClick={prevCard}
@@ -121,11 +137,13 @@ const Provide = () => {
           </button>
         </div>
       </section>
-      <div className="md:hidden flex flex-col mb-6 ">
-        <button className=" mx-auto bg-gray-600 text-white text-lg font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300 ">
+
+      <div className="md:hidden flex flex-col mb-6">
+        <button className="mx-auto bg-gray-600 text-white text-lg font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300">
           Get your Diet plan now
         </button>
       </div>
+
       {/* Desktop view button */}
       <button className="hidden md:block mx-auto mt-5 bg-gray-600 text-white text-3xl font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300">
         Get your Diet plan now
