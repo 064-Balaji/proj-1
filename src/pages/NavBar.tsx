@@ -6,7 +6,7 @@ const NavBar = () => {
     <div className="flex justify-between items-center space-x-3 bg-white/60 backdrop-blur-lg sticky top-0 z-50 px-2 py-3 shadow-md md:px-20">
       <img src={imgUrl} alt="Logo" className="h-12 md:h-20 md:pl-10" />
       <CustomPopup
-        buttonText="Get Your Diet Plan Now"
+        buttonText="Get your Diet plan"
         buttonClassName="md:hidden text-sm bg-button text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition duration-300 text-text  md:text-2xl md:ml-40"
       />
       <div className="flex items-center gap-3">

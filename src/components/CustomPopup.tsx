@@ -1,5 +1,14 @@
-import { Dialog, Flex, Heading, Radio, Text } from "@radix-ui/themes";
+import {
+  Dialog,
+  Flex,
+  Heading,
+  Radio,
+  Text,
+  TextField,
+} from "@radix-ui/themes";
 import { useState } from "react";
+import { AiOutlineMail } from "react-icons/ai";
+import { CiCalendar, CiMobile2, CiUser } from "react-icons/ci";
 
 const questions = [
   {
@@ -104,12 +113,58 @@ const CustomPopup = ({
                 ))}
               </Flex>
             ) : (
-              <Text>Input field can go here if needed.</Text>
+              <Flex direction={"column"} gap="2">
+                <Flex direction={"column"}>
+                  <Text className="font-semibold text-sm text-gray-600">
+                    Name
+                  </Text>
+                  <TextField.Root placeholder="Enter your name">
+                    <TextField.Slot>
+                      <CiUser size={22} />
+                    </TextField.Slot>
+                  </TextField.Root>
+                </Flex>
+                <Flex direction={"column"}>
+                  <Text className="font-semibold text-sm text-gray-600">
+                    Age
+                  </Text>
+                  <TextField.Root placeholder="Enter your age" type="number">
+                    <TextField.Slot>
+                      <CiCalendar size={22} />
+                    </TextField.Slot>
+                  </TextField.Root>
+                </Flex>
+                <Flex direction={"column"}>
+                  <Text className="font-semibold text-sm text-gray-600">
+                    Mobile
+                  </Text>
+                  <TextField.Root
+                    placeholder="Enter your Mobile Number"
+                    type="number"
+                  >
+                    <TextField.Slot>
+                      <CiMobile2 size={22} />
+                    </TextField.Slot>
+                  </TextField.Root>
+                </Flex>
+                <Flex direction={"column"}>
+                  <Text className="font-semibold text-sm text-gray-600">
+                    Email
+                  </Text>
+                  <TextField.Root placeholder="Enter your email" type="email">
+                    <TextField.Slot>
+                      <AiOutlineMail size={22} />
+                    </TextField.Slot>
+                  </TextField.Root>
+                </Flex>
+              </Flex>
             )}
             {curQuestion != 6 ? (
-              <p>{6 - curQuestion} questions remaining</p>
+              <p className="font-thin text-gray-600">
+                {6 - curQuestion} questions remaining
+              </p>
             ) : (
-              <p>You are almost there</p>
+              <p className="font-thin text-gray-600">You're almost there</p>
             )}
           </Flex>
           <Flex justify="between" className="mt-6">
