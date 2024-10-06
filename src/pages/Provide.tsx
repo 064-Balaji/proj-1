@@ -76,8 +76,6 @@ const Provide = () => {
     setCurrentCard((prev) => (prev - 1 + cardData.length) % cardData.length);
   };
 
-  const progressPercentage = ((currentCard + 1) / cardData.length) * 100;
-
   return (
     <>
       <section className="pt-[50px] relative bg-white my-2 md:my-0 md:pt-[40px] p-4 overflow-hidden">
@@ -115,24 +113,28 @@ const Provide = () => {
           ))}
         </div>
 
-        {/* Progress Bar */}
-        <div className="w-3/4 mx-auto bg-gray-200 h-2 rounded-full">
-          <div
-            className="bg-green-500 h-full rounded-full transition-all duration-300"
-            style={{ width: `${progressPercentage}%` }}
-          />
+        {/* Progress Bar Segments */}
+        <div className="w-3/4 md:w-2/4 mx-auto flex justify-between my-4">
+          {cardData.map((_, index) => (
+            <div
+              key={index}
+              className={`h-2 w-full mx-1 bg-gray-200 rounded-full transition-all duration-300 ${
+                index <= currentCard ? "bg-green-500" : ""
+              }`}
+            />
+          ))}
         </div>
 
         <div className="flex justify-between">
           <button
             onClick={prevCard}
-            className="absolute left-7 top-[320px] md:left-[220px] md:top-[220px] md:text-5xl"
+            className="absolute left-7 top-[320px] md:left-[220px] md:top-[220px] text-3xl md:text-5xl"
           >
             <BiChevronLeft />
           </button>
           <button
             onClick={nextCard}
-            className="absolute right-7 top-[320px] md:right-[220px] md:top-[220px] md:text-5xl"
+            className="absolute right-7 top-[320px] md:right-[220px] md:top-[220px] text-3xl md:text-5xl"
           >
             <BiChevronRight />
           </button>

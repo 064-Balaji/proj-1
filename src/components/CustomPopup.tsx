@@ -75,8 +75,6 @@ const CustomPopup = ({
     setSelectedOption(value);
   };
 
-  const progressPercentage = ((curQuestion + 1) / questions.length) * 100;
-
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -85,11 +83,17 @@ const CustomPopup = ({
       <Dialog.Content className="bg-white rounded-lg shadow-2xl p-6 relative">
         <Flex direction="column" gap="4">
           <Heading size="4">TELL US ABOUT YOURSELF!</Heading>
-          <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden mb-4">
-            <div
-              className="bg-green-500 h-full"
-              style={{ width: `${progressPercentage}%` }}
-            ></div>
+
+          {/* Progress Bar */}
+          <div className="w-full flex gap-2 mb-4">
+            {questions.map((_, index) => (
+              <div
+                key={index}
+                className={`h-2 flex-1 rounded-full ${
+                  index <= curQuestion ? "bg-green-500" : "bg-gray-200"
+                }`}
+              />
+            ))}
           </div>
 
           <Flex direction="column" gap="3">

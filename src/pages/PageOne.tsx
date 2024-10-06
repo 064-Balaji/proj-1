@@ -31,7 +31,7 @@ const PageOne = () => {
       {/* Desktop view */}
       <div className="hidden md:flex lg:flex relative mt-7 h-[680px]">
         <div className="m-3 pl-20">
-          <h1 className="flex-1 font-bold text-6xl lg:text-6xl">
+          <h1 className="flex-1 font-extrabold text-5xl lg:text-[55px]">
             Doctor Recommended Diabetes App
           </h1>
           <h1 className="text-6xl font-light my-12 lg:my-14">

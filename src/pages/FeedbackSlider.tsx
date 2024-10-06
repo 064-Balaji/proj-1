@@ -19,8 +19,10 @@ const FeedbackSlider = () => {
     feedback6,
   ];
 
+  const imagesPerSlide = window.innerWidth < 768 ? 1 : 3; // Adjust based on screen size
+  const totalSegments = Math.ceil(feedbackImages.length / imagesPerSlide); // Calculate the total number of segments
+
   const handlePrevClick = () => {
-    const imagesPerSlide = window.innerWidth < 768 ? 1 : 3; // Adjust based on screen size
     setCurrentSlide((prevSlide) =>
       prevSlide === 0
         ? feedbackImages.length - imagesPerSlide
@@ -29,16 +31,10 @@ const FeedbackSlider = () => {
   };
 
   const handleNextClick = () => {
-    const imagesPerSlide = window.innerWidth < 768 ? 1 : 3; // Adjust based on screen size
     setCurrentSlide(
       (prevSlide) => (prevSlide + imagesPerSlide) % feedbackImages.length
     );
   };
-
-  const progressPercentage =
-    ((currentSlide + (window.innerWidth < 768 ? 1 : 3)) /
-      feedbackImages.length) *
-    100;
 
   return (
     <section className="my-10">
@@ -52,7 +48,7 @@ const FeedbackSlider = () => {
             className="flex transition-transform duration-500 ease-in-out"
             style={{
               transform: `translateX(-${
-                currentSlide * (100 / (window.innerWidth < 768 ? 1 : 3))
+                currentSlide * (100 / imagesPerSlide)
               }%)`,
             }}
           >
@@ -68,12 +64,18 @@ const FeedbackSlider = () => {
           </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className="w-3/4 mx-auto bg-gray-200 h-2 rounded-full mt-4">
-          <div
-            className="bg-green-500 h-full rounded-full transition-all duration-300"
-            style={{ width: `${progressPercentage}%` }}
-          />
+        {/* Segmented Progress Bar */}
+        <div className="flex justify-center mt-4 space-x-2">
+          {Array.from({ length: totalSegments }).map((_, index) => (
+            <div
+              key={index}
+              className={`w-8 h-2 rounded-full ${
+                currentSlide / imagesPerSlide >= index
+                  ? "bg-green-500"
+                  : "bg-gray-300"
+              }`}
+            />
+          ))}
         </div>
 
         {/* Navigation Buttons */}
