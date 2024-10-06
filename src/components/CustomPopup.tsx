@@ -59,21 +59,47 @@ const CustomPopup = ({
   buttonClassName: string;
 }) => {
   const [curQuestion, setQuestion] = useState(0);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [answers, setAnswers] = useState<any>({});
+  const [inputValues, setInputValues] = useState({
+    name: "",
+    age: "",
+    mobile: "",
+    email: "",
+  });
 
   const changeQues = (perform: string) => {
     if (perform === "add" && curQuestion < questions.length - 1) {
       setQuestion(curQuestion + 1);
-      setSelectedOption("");
     } else if (perform === "neg" && curQuestion > 0) {
       setQuestion(curQuestion - 1);
-      setSelectedOption("");
     }
   };
 
   const handleOptionChange = (value: any) => {
-    setSelectedOption(value);
+    setAnswers({ ...answers, [curQuestion]: value });
   };
+
+  const handleInputChange = (field: string, value: string) => {
+    setInputValues({ ...inputValues, [field]: value });
+  };
+
+  const handleSubmit = () => {
+    const allValues = {
+      ...answers,
+      details: inputValues,
+    };
+    alert(`Form submitted with values: ${JSON.stringify(allValues)}`);
+  };
+
+  const progressSegments = questions.map((_, index) => (
+    <div
+      key={index}
+      className={`h-2 rounded-full ${
+        index <= curQuestion ? "bg-green-600" : "bg-gray-200"
+      }`}
+      style={{ width: `${100 / questions.length}%` }}
+    ></div>
+  ));
 
   return (
     <Dialog.Root>
@@ -83,18 +109,7 @@ const CustomPopup = ({
       <Dialog.Content className="bg-white rounded-lg shadow-2xl p-6 relative">
         <Flex direction="column" gap="4">
           <Heading size="4">TELL US ABOUT YOURSELF!</Heading>
-
-          {/* Progress Bar */}
-          <div className="w-full flex gap-2 mb-4">
-            {questions.map((_, index) => (
-              <div
-                key={index}
-                className={`h-2 flex-1 rounded-full ${
-                  index <= curQuestion ? "bg-green-500" : "bg-gray-200"
-                }`}
-              />
-            ))}
-          </div>
+          <div className="w-full flex space-x-1 mb-4">{progressSegments}</div>
 
           <Flex direction="column" gap="3">
             <Heading size="3">{questions[curQuestion].question}</Heading>
@@ -104,13 +119,17 @@ const CustomPopup = ({
                   <Text
                     as="label"
                     key={index}
-                    className="flex gap-2 items-center p-2 rounded-md bg-gray-100"
+                    className={`flex gap-2 items-center p-2 rounded-md ${
+                      answers[curQuestion] === O
+                        ? "bg-green-600 text-white"
+                        : "bg-gray-100"
+                    }`}
                   >
                     <Radio
                       name={`question-${curQuestion}`}
                       value={O}
                       onChange={() => handleOptionChange(O)}
-                      checked={selectedOption === O}
+                      checked={answers[curQuestion] === O}
                     />
                     <Text>{O}</Text>
                   </Text>
@@ -122,7 +141,11 @@ const CustomPopup = ({
                   <Text className="font-semibold text-sm text-gray-600">
                     Name
                   </Text>
-                  <TextField.Root placeholder="Enter your name">
+                  <TextField.Root
+                    placeholder="Enter your name"
+                    value={inputValues.name}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
+                  >
                     <TextField.Slot>
                       <CiUser size={22} />
                     </TextField.Slot>
@@ -132,7 +155,12 @@ const CustomPopup = ({
                   <Text className="font-semibold text-sm text-gray-600">
                     Age
                   </Text>
-                  <TextField.Root placeholder="Enter your age" type="number">
+                  <TextField.Root
+                    placeholder="Enter your age"
+                    value={inputValues.age}
+                    onChange={(e) => handleInputChange("age", e.target.value)}
+                    type="number"
+                  >
                     <TextField.Slot>
                       <CiCalendar size={22} />
                     </TextField.Slot>
@@ -144,6 +172,10 @@ const CustomPopup = ({
                   </Text>
                   <TextField.Root
                     placeholder="Enter your Mobile Number"
+                    value={inputValues.mobile}
+                    onChange={(e) =>
+                      handleInputChange("mobile", e.target.value)
+                    }
                     type="number"
                   >
                     <TextField.Slot>
@@ -155,7 +187,12 @@ const CustomPopup = ({
                   <Text className="font-semibold text-sm text-gray-600">
                     Email
                   </Text>
-                  <TextField.Root placeholder="Enter your email" type="email">
+                  <TextField.Root
+                    placeholder="Enter your email"
+                    value={inputValues.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    type="email"
+                  >
                     <TextField.Slot>
                       <AiOutlineMail size={22} />
                     </TextField.Slot>
@@ -163,14 +200,16 @@ const CustomPopup = ({
                 </Flex>
               </Flex>
             )}
-            {curQuestion != 6 ? (
+
+            {curQuestion !== questions.length - 1 ? (
               <p className="font-thin text-gray-600">
-                {6 - curQuestion} questions remaining
+                {questions.length - 1 - curQuestion} questions remaining
               </p>
             ) : (
               <p className="font-thin text-gray-600">You're almost there</p>
             )}
           </Flex>
+
           <Flex justify="between" className="mt-6">
             <button
               disabled={curQuestion === 0}
@@ -178,22 +217,31 @@ const CustomPopup = ({
               className={`px-4 py-2 rounded-md ${
                 curQuestion === 0
                   ? "bg-gray-300 text-gray-500"
-                  : "bg-green-500 text-white"
+                  : "bg-green-600 text-white"
               } transition duration-300`}
             >
               Previous
             </button>
-            <button
-              disabled={!selectedOption}
-              className={`px-4 py-2 rounded-md ${
-                selectedOption
-                  ? "bg-green-500 text-white"
-                  : "bg-gray-300 text-gray-500"
-              } transition duration-300`}
-              onClick={() => changeQues("add")}
-            >
-              Next
-            </button>
+            {curQuestion === questions.length - 1 ? (
+              <button
+                onClick={handleSubmit}
+                className="px-4 py-2 bg-green-600 text-white rounded-md"
+              >
+                Submit
+              </button>
+            ) : (
+              <button
+                disabled={!answers[curQuestion]}
+                className={`px-4 py-2 rounded-md ${
+                  answers[curQuestion]
+                    ? "bg-green-600 text-white"
+                    : "bg-gray-300 text-gray-500"
+                } transition duration-300`}
+                onClick={() => changeQues("add")}
+              >
+                Next
+              </button>
+            )}
           </Flex>
         </Flex>
         <Dialog.Close>
