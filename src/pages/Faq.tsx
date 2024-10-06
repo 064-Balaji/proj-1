@@ -1,40 +1,51 @@
+import { useState } from "react";
 import img14 from "../../public/img/14.png";
 import img15 from "../../public/img/15.png";
 import second from "../../public/img/Pop Up Website.png";
 import CustomPopup from "../components/CustomPopup";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 const FAQ = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const images = [img14, img15];
+
+  // Handle switching to the next image
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  // Handle switching to the previous image
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
     <section>
       {/* Phone view */}
       <div className="md:hidden relative w-full h-[600px] overflow-hidden py-6">
         <div
           id="slider1"
-          className="flex justify-between transition-transform duration-300 ease-in-out"
+          className="flex justify-center transition-transform duration-300 ease-in-out"
         >
-          <img src={img14} alt="FAQ Questions" className="object-cover" />
-          <img src={img15} alt="FAQ Answers" className="object-cover" />
+          <img
+            src={images[currentImageIndex]}
+            alt={`FAQ Image ${currentImageIndex + 1}`}
+            className="object-cover"
+          />
         </div>
-        <div className="flex justify-center space-x-4">
-          <button
-            id="prevBtn1"
-            className="text-white absolute left-7 top-[320px] md:absolute md:left-[220px] md:top-[220px] md:text-5xl md:text-black md:bg-white"
-          >
-            <img
-              src="/assests/img/left.png"
-              alt="Previous"
-              className="block h-10 md:h-20"
-            />
+        <div className="flex justify-between items-center px-4 absolute inset-0 z-10">
+          {/* Left Button */}
+          <button onClick={prevImage} className="p-2">
+            <BiChevronLeft className="text-4xl text-black" />
           </button>
-          <button
-            id="nextBtn1"
-            className="text-white absolute right-7 top-[320px] md:absolute md:right-[220px] md:top-[220px] md:bg-white"
-          >
-            <img
-              src="/assests/img/right.png"
-              alt="Next"
-              className="block h-10 md:h-20"
-            />
+          {/* Right Button */}
+          <button onClick={nextImage} className="p-2">
+            <BiChevronRight className="text-4xl text-black" />
           </button>
         </div>
         <CustomPopup
