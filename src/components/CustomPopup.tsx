@@ -42,33 +42,36 @@ const questions = [
   },
 ];
 
-const Btn = () => {
+const CustomPopup = ({
+  buttonText,
+  buttonClassName,
+}: {
+  buttonText: string;
+  buttonClassName: string;
+}) => {
   const [curQuestion, setQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
 
   const changeQues = (perform: string) => {
     if (perform === "add" && curQuestion < questions.length - 1) {
       setQuestion(curQuestion + 1);
-      setSelectedOption(""); // Reset option for the next question
+      setSelectedOption("");
     } else if (perform === "neg" && curQuestion > 0) {
       setQuestion(curQuestion - 1);
-      setSelectedOption(""); // Reset option for the previous question
+      setSelectedOption("");
     }
   };
 
-  const handleOptionChange = (value: string) => {
+  const handleOptionChange = (value: any) => {
     setSelectedOption(value);
   };
 
-  // Calculate progress percentage
   const progressPercentage = ((curQuestion + 1) / questions.length) * 100;
 
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <button className="bg-gray-600 text-white text-2xl font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300">
-          Get your Diet plan now
-        </button>
+        <button className={buttonClassName}>{buttonText}</button>
       </Dialog.Trigger>
       <Dialog.Content className="bg-white rounded-lg shadow-2xl p-6 relative">
         <Flex direction="column" gap="4">
@@ -157,4 +160,4 @@ const Btn = () => {
   );
 };
 
-export default Btn;
+export default CustomPopup;

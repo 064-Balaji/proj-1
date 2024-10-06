@@ -11,6 +11,7 @@ import image12 from "../../public/img/WEBSITE PICS (12).png";
 import image13 from "../../public/img/WEBSITE PICS (13).png";
 import image14 from "../../public/img/WEBSITE PICS (14).png";
 import image15 from "../../public/img/WEBSITE PICS (15).png";
+import CustomPopup from "../components/CustomPopup";
 
 const cardData = [
   {
@@ -80,14 +81,14 @@ const Provide = () => {
   return (
     <>
       <section className="pt-[50px] relative bg-white my-2 md:my-0 md:pt-[40px] p-4 overflow-hidden">
-        <div className="inline-block absolute left-[-15%] top-3 bg-wwp text-white font-bold pl-[90px] rounded-full shadow-lg py-3 pr-5 text-center italic md:hidden">
+        <div className="inline-block absolute left-[-25%] top-3 bg-wwp text-white font-bold pl-[90px] rounded-full shadow-lg py-3 pr-5 text-center italic md:hidden">
           <h1 className="pr-5">What We Provide?</h1>
         </div>
-        <div className="hidden md:inline-block md:absolute md:left-[-5%] md:top-[60px] bg-gray-600 text-white text-3xl font-bold pl-[90px] p-10 rounded-full shadow-lg py-3 pr-5 text-center italic">
+        <div className="hidden md:inline-block md:absolute md:left-[-5%] md:top-[60px] bg-wwp text-white text-3xl font-bold pl-[90px] p-10 rounded-full shadow-lg py-3 pr-5 text-center italic">
           <h1 className="pr-5">What We Provide?</h1>
         </div>
 
-        <div className="card-stack relative h-[500px] md:h-[525px]">
+        <div className="card-stack relative h-[450px] md:h-[600px]">
           {cardData.map((card, index) => (
             <div
               key={index}
@@ -102,7 +103,7 @@ const Provide = () => {
               <img
                 src={card.image}
                 alt={card.title}
-                className="h-[350px] w-auto md:h-[450px] mx-auto"
+                className="h-[250px] w-auto md:h-[450px] mx-auto" // Adjusted for mobile view
               />
               <h3 className="font-semibold text-lg text-center mt-3 italic md:text-[30px] md:my-1">
                 {card.title}
@@ -115,7 +116,7 @@ const Provide = () => {
         </div>
 
         {/* Progress Bar */}
-        <div className="w-3/4 mx-auto bg-gray-200 h-2 rounded-full mt-12">
+        <div className="w-3/4 mx-auto bg-gray-200 h-2 rounded-full">
           <div
             className="bg-green-500 h-full rounded-full transition-all duration-300"
             style={{ width: `${progressPercentage}%` }}
@@ -125,13 +126,13 @@ const Provide = () => {
         <div className="flex justify-between">
           <button
             onClick={prevCard}
-            className="absolute left-7 top-[320px] md:left-[220px] md:top-[220px] md:text-5xl md:bg-white md:text-black"
+            className="absolute left-7 top-[320px] md:left-[220px] md:top-[220px] md:text-5xl"
           >
             <BiChevronLeft />
           </button>
           <button
             onClick={nextCard}
-            className="absolute right-7 top-[320px] md:right-[220px] md:top-[220px] md:text-5xl md:bg-white"
+            className="absolute right-7 top-[320px] md:right-[220px] md:top-[220px] md:text-5xl"
           >
             <BiChevronRight />
           </button>
@@ -139,15 +140,17 @@ const Provide = () => {
       </section>
 
       <div className="md:hidden flex flex-col mb-6">
-        <button className="mx-auto bg-gray-600 text-white text-lg font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300">
-          Get your Diet plan now
-        </button>
+        <CustomPopup
+          buttonClassName="mx-auto bg-button text-white text-lg font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300"
+          buttonText="Get your Diet plan now"
+        />
       </div>
 
       {/* Desktop view button */}
-      <button className="hidden md:block mx-auto mt-5 bg-gray-600 text-white text-3xl font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300">
-        Get your Diet plan now
-      </button>
+      <CustomPopup
+        buttonClassName="hidden md:block mx-auto mt-5 bg-button text-white text-3xl font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300"
+        buttonText="Get your Diet plan now"
+      />
     </>
   );
 };

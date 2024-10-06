@@ -1,5 +1,6 @@
 import docPanel from "../../public/img/WEBSITE PICS (5).png";
 import diaCure from "../../public/img/WEBSITE PICS (6).png";
+import CustomPopup from "../components/CustomPopup";
 
 const PageTwo = () => {
   return (
@@ -24,9 +25,10 @@ const PageTwo = () => {
             ,<br />
             Researches, Panel of Doctors, Nutritionists & Fitness coaches.
           </p>
-          <button className="mx-auto bg-gray-600 text-white text-lg font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300 ">
-            Get your Diet plan now
-          </button>
+          <CustomPopup
+            buttonClassName="mx-auto bg-button text-white text-lg font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300"
+            buttonText="Get your Diet plan now"
+          />
         </div>
         <img src={docPanel} alt="Doctors panel" />
       </div>
@@ -41,7 +43,7 @@ const PageTwo = () => {
           />
         </div>
         <div className="text-center h-full w-full pt-20">
-          <h1 className="text-5xl text-text mb-10 text-gray-600">
+          <h1 className="text-5xl text-text mb-10">
             Diabetecure’s Way to Beat Diabetes
           </h1>
           <h1 className="text-center font-bold text-4xl my-5 italic">
@@ -56,9 +58,10 @@ const PageTwo = () => {
             <br />
             Researches, Panel of Doctors, Nutritionists & Fitness coaches.
           </p>
-          <button className="mx-auto trigger-popup bg-gray-600 text-white text-3xl font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300">
-            Get your Diet plan now
-          </button>
+          <CustomPopup
+            buttonText="Get your Diet plan now"
+            buttonClassName="mx-auto trigger-popup bg-button text-white text-3xl font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300"
+          />
         </div>
         <div className="absolute bottom-5 right-0">
           <img

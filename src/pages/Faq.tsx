@@ -1,6 +1,7 @@
 import img14 from "../../public/img/14.png";
 import img15 from "../../public/img/15.png";
 import second from "../../public/img/Pop Up Website.png";
+import CustomPopup from "../components/CustomPopup";
 
 const FAQ = () => {
   return (
@@ -36,20 +37,19 @@ const FAQ = () => {
             />
           </button>
         </div>
-        <button
-          id="trigger-popup"
-          className="trigger-popup absolute bottom-10 left-[25%] mx-auto bg-button text-white text-lg font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300"
-        >
-          Get your Diet plan now
-        </button>
+        <CustomPopup
+          buttonClassName="absolute bottom-10 left-[12%] mx-auto bg-button text-white text-lg font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300"
+          buttonText="Get your Diet plan now"
+        />
       </div>
 
       {/* Desktop view */}
       <section className="hidden md:flex justify-center relative mb-7">
         <img src={second} alt="FAQ Desktop View" />
-        <button className="absolute bottom-10 left-[37%] hidden md:block mx-auto mt-[60px] bg-gray-600 text-white text-3xl font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300">
-          Get your Diet plan now
-        </button>
+        <CustomPopup
+          buttonClassName="absolute bottom-10 left-[37%] hidden md:block mx-auto mt-[60px] bg-button text-white text-3xl font-bold px-6 py-2 rounded-md shadow-lg hover:shadow-xl transition duration-300"
+          buttonText="Get your Diet plan now"
+        />
       </section>
     </section>
   );

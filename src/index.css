@@ -25,10 +25,6 @@ body {
 .slider-card {
   scroll-snap-align: start;
 }
-body {
-  font-family: "Glacial Indifference", sans-serif;
-  touch-action: pan-y;
-}
 
 .card-stack {
   perspective: 1000px;
@@ -61,4 +57,20 @@ body {
 .option-small {
   font-size: 18px; /* Adjust size as needed */
   font-style: italic;
+}
+
+@font-face {
+  font-family: "Glacial Indifference";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.cdnfonts.com/s/31913/GlacialIndifference-Regular.woff")
+    format("woff");
+}
+
+@font-face {
+  font-family: "Glacial Indifference";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://fonts.cdnfonts.com/s/31913/GlacialIndifference-Bold.woff")
+    format("woff");
 }
