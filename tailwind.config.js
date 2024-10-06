@@ -9,6 +9,11 @@ export default {
         wwp: "#484b4e",
         checked: "#009846",
       },
+      fontFamily: {
+        regular: ['"Regular"'],
+        bold: ["Bold"],
+        light: ["Light"],
+      },
     },
   },
   plugins: [],

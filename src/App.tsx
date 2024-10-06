@@ -11,7 +11,7 @@ import SocialMedia from "./pages/SocialMedia";
 
 function App() {
   return (
-    <>
+    <div className="font-regular">
       <NavBar />
       <PageOne />
       <PageTwo />
@@ -22,7 +22,7 @@ function App() {
       <FeedbackSlider />
       <Footer />
       <FooterTwo />
-    </>
+    </div>
   );
 }
 

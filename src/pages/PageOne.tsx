@@ -29,12 +29,12 @@ const PageOne = () => {
       </section>
 
       {/* Desktop view */}
-      <div className="hidden md:flex lg:flex relative mt-7 h-[680px]">
-        <div className="m-3 pl-20">
-          <h1 className="flex-1 font-extrabold text-5xl lg:text-[55px]">
+      <div className="hidden md:flex lg:flex relative mt-7 h-[650px]">
+        <div className="m-3 pl-16">
+          <h1 className="flex-1 font-bold md:text-6xl">
             Doctor Recommended Diabetes App
           </h1>
-          <h1 className="text-6xl font-light my-12 lg:my-14">
+          <h1 className="text-5xl font-light my-12 lg:my-14">
             Get your Diet and Fitness plan <br />
             for Diabetes
           </h1>
@@ -52,7 +52,7 @@ const PageOne = () => {
           <img
             src={familUrl2}
             alt="Diet Plan"
-            className="h-[700px] w-[950px]"
+            className="h-[700px] w-[950px] pt-8"
           />
         </div>
       </div>
